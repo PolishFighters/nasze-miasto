@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+	"lint": "eslint src",
+	"lintNFix": "eslint --fix src"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +17,10 @@
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
+    "pg": "^8.8.0",
     "uuid4": "^2.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.25.0"
   }
 }
