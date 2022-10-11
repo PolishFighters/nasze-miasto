@@ -33,6 +33,10 @@ app.get("/", (req, res) => {
 	res.render("pages/index");
 });
 
+app.get("/login", require("./pages/login"));
+
+app.use("/api/", require("./api/"));
+
 app.listen(port, () => {
 	console.log(`Listening at http://localhost:${port}`);
 });
