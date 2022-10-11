@@ -16,6 +16,9 @@ app.set({
     "Content-Type": "text/html",
 });
 
+const db = require("./db");
+db.load();
+
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -27,6 +30,7 @@ app.use(fileUpload({
 app.set("views", "web");
 
 app.get("/", (req, res) => {
+	console.log(db.db);
     res.render("pages/index");
 });
 
