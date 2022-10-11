@@ -9,11 +9,11 @@ const ejs = require("ejs");
 app.set("view engine", "ejs");
 
 ejs.fileLoader = (path) => {
-    return fs.readFileSync(path, { encoding: "utf-8" });
+	return fs.readFileSync(path, { encoding: "utf-8" });
 };
 
 app.set({
-    "Content-Type": "text/html",
+	"Content-Type": "text/html",
 });
 
 const db = require("./db");
@@ -24,16 +24,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(fileUpload({
-    createParentPath: true
+	createParentPath: true
 }));
 
 app.set("views", "web");
 
 app.get("/", (req, res) => {
-	console.log(db.db);
-    res.render("pages/index");
+	db.db.users[0].email = "email"+Math.random().toString();
+	db.db.users[0].firstname = "firstname"+Math.random().toString();
+	db.db.users[0].lastname = "lastname"+Math.random().toString();
+	db.db.users[0].password = "password"+Math.random().toString();
+	db.db.users[0].liked = [1, (50*Math.random())|0, 2];
+	db.save();
+	res.render("pages/index");
 });
 
 app.listen(port, () => {
-    console.log(`Listening at http://localhost:${port}`);
+	console.log(`Listening at http://localhost:${port}`);
 });
