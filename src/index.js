@@ -30,12 +30,6 @@ app.use(fileUpload({
 app.set("views", "web");
 
 app.get("/", (req, res) => {
-	db.db.users[0].email = "email"+Math.random().toString();
-	db.db.users[0].firstname = "firstname"+Math.random().toString();
-	db.db.users[0].lastname = "lastname"+Math.random().toString();
-	db.db.users[0].password = "password"+Math.random().toString();
-	db.db.users[0].liked = [1, (50*Math.random())|0, 2];
-	db.save();
 	res.render("pages/index");
 });
 
