@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
-	"lint": "eslint src",
-	"lintNFix": "eslint --fix src"
+    "lint": "eslint src",
+    "lintNFix": "eslint --fix src"
   },
   "author": "",
   "license": "ISC",

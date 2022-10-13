@@ -157,6 +157,21 @@ module.exports = {
 		if(sql.length==0) return;
 		pool.query(sql).then(res=>{}).catch(err=>console.error(err));
 	},
+	add_post: (content, author) => {
+
+		pool.query("INSERT INTO posts(content, likes, deleted, author) VALUES ($1::text, 0, false, $2::int)", [content, author]).then(res =>
+		{
+			if (err) 
+			{
+				console.error('Error executing query', err.stack)
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}).catch(err=>console.error(err));
+	},
 	decode: decode,
 	encode: encode
 };
