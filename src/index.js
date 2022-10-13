@@ -17,6 +17,8 @@ app.set({
 });
 
 const db = require("./db");
+const e = require("express");
+const sessions = require("./sessions");
 db.load();
 
 app.use(express.static("public"));
@@ -32,6 +34,22 @@ app.set("views", "web");
 app.get("/", (req, res) => {
 	res.render("pages/index");
 });
+
+app.get("/errorCard", (req, res) => {
+	res.render("pages/errorCard");
+});
+
+
+app.get("/addedCard", (req, res) => {
+	res.render("pages/addedCard");
+});
+
+
+app.get("/createCard", (req, res) => {
+	res.render("pages/createCard");
+});
+
+app.post("/createCard",  require("./pages/createCard"));
 
 app.get("/login", require("./pages/login"));
 
