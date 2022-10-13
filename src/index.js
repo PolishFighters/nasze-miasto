@@ -36,9 +36,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", require("./pages/login"));
-app.get("/card_error", require("./pages/card_error"));
-app.get("/card_added", require("./pages/card_added"));
-app.get("/create_card", require("./pages/create_card"));
+app.get("/post_error", require("./pages/post_error"));
+app.get("/post_added", require("./pages/post_added"));
+app.get("/create_post", require("./pages/create_post"));
 
 app.use("/api/", require("./api/"));
 

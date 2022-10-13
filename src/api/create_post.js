@@ -9,7 +9,7 @@ module.exports = (req, res) => {
 	const content = req.body.content;
 	if(content==undefined)
 	{
-		res.redirect("/card_error");
+		res.redirect("/post_error");
 		return;
 	}
 	db.db.posts.push({
@@ -20,5 +20,5 @@ module.exports = (req, res) => {
 		author: sessions.user_from_session(req.cookies.session).id
 	});
 	db.save();
-	res.redirect("/card_added");
+	res.redirect("/post_added");
 };

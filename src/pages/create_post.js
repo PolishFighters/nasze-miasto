@@ -4,5 +4,5 @@ module.exports = (req, res) => {
 		res.redirect("/login");
 		return;
 	}
-	res.render("pages/create_card");
+	res.render("pages/create_post");
 };

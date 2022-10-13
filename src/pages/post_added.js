@@ -1,4 +1,4 @@
 const sessions = require("../sessions");
 module.exports = (req, res) => {
-	res.render("pages/card_error");
+	res.render("pages/post_added");
 };
