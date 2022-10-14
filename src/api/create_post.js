@@ -20,5 +20,6 @@ module.exports = (req, res) => {
 		author: sessions.user_from_session(req.cookies.session).id
 	});
 	db.save();
+	db.load();
 	res.redirect("/post_added");
 };
