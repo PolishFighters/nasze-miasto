@@ -31,6 +31,6 @@ module.exports = (req, res) => {
 		created_at: new Date(Date.now())
 	});
 	db.save();
-	db.load();
+	
 	res.redirect("/post_added");
 };
