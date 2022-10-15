@@ -1,9 +1,0 @@
-<%- include("../partials/header") %>
-<title>Ogłoszenia</title>
-
-<% for (let pi = 0; pi < locals.posts.length; pi++) { %>
-	<% const post = locals.posts[pi] %>
-	<%- include("../components/post_preview", {post: post}) %>
-<% } %>
-
-<%- include("../partials/footer") %>
