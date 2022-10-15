@@ -14,9 +14,18 @@
 	});
 </script>
 
-<form action="/api/create_post" method="post">
-	<input name="title" placeholder="Tytuł" type="text" />
-	<textarea name="content" id="textarea" placeholder="Jaki masz pomysł na modernizację naszego miasta?"></textarea>
-	<input type="submit" value="Wyślij"/>
-</form>
+<title>Zgłoś pomysł</title>
+<div class="container">
+	<div class="pb-2 mb-2">
+		<h3>Zgłoś swój pomysł</h3>
+	</div>
+
+	<form action="/api/create_post" method="post">
+		<input class="form-label" name="title" placeholder="Tytuł" type="text" />
+		<div class="mb-3">
+			<textarea name="content" id="textarea" placeholder="Jaki masz pomysł na modernizację naszego miasta?"></textarea>
+		</div>
+		<button class="btn btn-primary" type="submit">Wyślij</button>
+	</form>
+</div>
 <%- include("../partials/footer") %>
