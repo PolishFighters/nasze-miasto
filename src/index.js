@@ -33,13 +33,15 @@ app.use(fileUpload({
 app.use((req, res, next) => {
 	res.locals.user = sessions.user_from_session(req.cookies.session);
 	res.locals.logged_in = res.locals.user != undefined;
+	res.locals.db = db.db;
 	next();
 });
 
 app.set("views", "web");
 
 app.get("/", (req, res) => {
-	res.render("pages/index", { posts: db.db.posts });
+	const sorted_posts = db.db.posts.sort((a, b) => b.created_at.getTime() - a.created_at.getTime() );
+	res.render("pages/index", { posts: sorted_posts });
 });
 
 app.get("/login", require("./pages/login"));
