@@ -18,7 +18,6 @@ app.set({
 });
 
 const db = require("./db");
-const e = require("express");
 const sessions = require("./sessions");
 db.load();
 
