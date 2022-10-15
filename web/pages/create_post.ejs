@@ -15,7 +15,7 @@
 		<div class="mb-3">
 			<textarea name="content" id="post_content_ta" placeholder="Jaki masz pomysł na modernizację naszego miasta?"></textarea>
 			<script>
-				const simplemde = new SimpleMDE({ element: document.getElementById("post_content_ta") });
+				const simplemde = new SimpleMDE({ element: document.getElementById("post_content_ta"), spellChecker: false });
 			</script>
 		</div>
 		<button class="btn btn-primary" type="submit">Wyślij</button>
