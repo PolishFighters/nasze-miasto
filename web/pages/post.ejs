@@ -1,0 +1,20 @@
+<% const post = locals.post ?? {} %>
+<%- include("../partials/header") %>
+<title>Post: <%= post.title %></title>
+<div class="container">
+    <div class="pb-2 mb-2 border-bottom">
+        <h3><%= post.title %></h3>
+    </div>
+    <div class="pb-2 mb-2">
+		<% const author_user = locals.db.users.find(v=>v.id==post.author) %>
+		<span>Autor: <%- author_user?.firstname %> <%- author_user?.lastname %></span>
+		<span class="text-muted">|</span>
+		<span>Miasto: Not implemented yet! :(</span>
+		<span class="text-muted">|</span>
+		<span>Data dodania: <%- post.created_at?.toLocaleString("pl-pl") %></span>
+    </div>
+    <div class="pb-2 mb-2">
+        <%- locals.xss %>
+    </div>
+</div>
+<%- include("../partials/footer") %>

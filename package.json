@@ -20,7 +20,8 @@
     "express-fileupload": "^1.4.0",
     "pg": "^8.8.0",
     "sync-fetch": "^0.4.2",
-    "uuid4": "^2.0.3"
+    "uuid4": "^2.0.3",
+    "xss": "^1.0.14"
   },
   "devDependencies": {
     "eslint": "^8.25.0"
