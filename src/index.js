@@ -22,6 +22,7 @@ const sessions = require("./sessions");
 db.load();
 
 app.use(express.static("node_modules/bootstrap/dist/"));
+app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
