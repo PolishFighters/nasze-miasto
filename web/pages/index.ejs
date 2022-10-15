@@ -1,7 +1,12 @@
 <%- include("../partials/header") %>
+<title>Strona Główna</title>
 <div class="container">
     <div class="pb-2 mb-2 border-bottom">
-        <h3>Hello World!</h3>
+		<h2>Ogłoszenia</h2>	
     </div>
+	<% for (let pi = 0; pi < locals.posts.length; pi++) { %>
+		<% const post = locals.posts[pi] %>
+		<%- include("../components/post_preview", {post: post}) %>
+	<% } %>	
 </div>
 <%- include("../partials/footer") %>
