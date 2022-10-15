@@ -6,6 +6,7 @@ const app = express();
 const port = (process.env.PORT || 3000);
 const fileUpload = require("express-fileupload");
 const ejs = require("ejs");
+const path = require("path")
 app.set("view engine", "ejs");
 
 ejs.fileLoader = (path) => {
@@ -21,7 +22,8 @@ const e = require("express");
 const sessions = require("./sessions");
 db.load();
 
-app.use(express.static("public"));
+app.use(express.static('node_modules/bootstrap/dist/'))
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());

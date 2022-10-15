@@ -1,27 +1,30 @@
 <%- include("../partials/header") %>
-	<title>Rejestracja</title>
-	<form action="/api/signup" method="post">
-        
-        <label for="login_form_first_name">Imię</label>
-		<input type="text" name="first_name" id="login_form_first_name">
-		<br/>
-
-        <label for="login_form_last_name">Nazwisko</label>
-		<input type="text" name="last_name" id="login_form_last_name">
-		<br/>
-
-		<label for="login_form_email">Email</label>
-		<input type="email" name="email" id="login_form_email">
-		<br/>
-
-		<label for="login_form_password">Hasło</label>
-		<input type="password" name="password" id="login_form_password">
-		<br/>
-
-        <label for="login_form_confirm_password">Potwierdź hasło</label>
-		<input type="password" name="confirm_password" id="login_form_confirm_password">
-		<br/>
-
-		<input type="submit" value="Zaloguj się">
+<title>Rejestracja</title>
+<div class="container">
+	<div class="pb-2 mb-2 border-bottom">
+		<h3>Załóż konto</h3>
+	</div>
+	<form class="mb-5" action="/api/signup" method="post">
+		<div class="mb-3">
+        	<label class="form-label" for="login_form_first_name">Imię</label>
+			<input class="form-control" type="text" name="first_name" id="login_form_first_name">
+		</div>
+		<div class="mb-3">
+			<label class="form-label" for="login_form_last_name">Nazwisko</label>
+			<input class="form-control" type="text" name="last_name" id="login_form_last_name">
+		</div>
+		<div class="mb-3">
+			<label class="form-label" for="login_form_email">Email</label>
+			<input class="form-control" type="email" name="email" id="login_form_email">
+		</div>
+		<div class="mb-3">
+			<label class="form-label" for="login_form_password">Hasło</label>
+			<input class="form-control" type="password" name="password" id="login_form_password">
+		</div>
+		<div class="mb-3">
+			<label class="form-label" for="login_form_confirm_password">Potwierdź hasło</label>
+			<input class="form-control" type="password" name="confirm_password" id="login_form_confirm_password">
+		</div>
+		<button class="btn btn-primary" type="submit">Załóż konto</button>
 	</form>
 <%- include("../partials/footer") %>
