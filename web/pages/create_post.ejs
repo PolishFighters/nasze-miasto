@@ -1,7 +1,6 @@
 <%- include("../partials/header") %>
-<script src="https://cdn.tiny.cloud/1/fr6kjy3uthc0coft8ony3vo5wdtv9k5xqufxb35pts3gsh2y/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 
 <title>Zgłoś pomysł</title>
 <div class="container">
@@ -10,9 +9,14 @@
 	</div>
 
 	<form action="/api/create_post" method="post">
-		<input class="form-label" name="title" placeholder="Tytuł" type="text" />
 		<div class="mb-3">
-			<textarea name="content" id="textarea" placeholder="Jaki masz pomysł na modernizację naszego miasta?"></textarea>
+			<input class="form-control" name="title" placeholder="Tytuł" type="text" />
+		</div>
+		<div class="mb-3">
+			<textarea name="content" id="post_content_ta" placeholder="Jaki masz pomysł na modernizację naszego miasta?"></textarea>
+			<script>
+				const simplemde = new SimpleMDE({ element: document.getElementById("post_content_ta") });
+			</script>
 		</div>
 		<button class="btn btn-primary" type="submit">Wyślij</button>
 	</form>
