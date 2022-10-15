@@ -102,7 +102,7 @@ module.exports = {
 			const user = module.exports.db.users[ui];
 			const old_index = original_state.users?.findIndex(v=>v.id==user.id) ?? -1;
 			if(old_index < 0) {
-				changes.push(`INSERT INTO users VALUES (DEFAULT, '${encode(user.firstname)}', '${encode(user.lastname)}', '${encode(user.email)}', '${user.password}', '${user.liked.join(",")}')`);
+				changes.push(`INSERT INTO users (id, firstname, lastname, email, password, liked) VALUES (DEFAULT, '${encode(user.firstname)}', '${encode(user.lastname)}', '${encode(user.email)}', '${user.password}', '${user.liked.join(",")}')`);
 				original_state.users.push({id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email, password: user.password, liked: user.liked});
 				continue;
 			}
@@ -135,7 +135,7 @@ module.exports = {
 			const post = module.exports.db.posts[pi];
 			const old_index = original_state.posts?.findIndex(v=>v.id==post.id) ?? -1;
 			if(old_index < 0) {
-				changes.push(`INSERT INTO posts VALUES (DEFAULT, '${encode(post.content)}', ${post.likes}, ${post.deleted}, ${post.author}, '${encode(post.title)}', '${post.created_at.toISOString()}')`);
+				changes.push(`INSERT INTO posts (id, content, likes, deleted, author, title, created_at) VALUES (DEFAULT, '${encode(post.content)}', ${post.likes}, ${post.deleted}, ${post.author}, '${encode(post.title)}', '${post.created_at.toISOString()}')`);
 				original_state.posts.push({id: post.id, content: post.content, likes: post.likes, deleted: post.deleted, author: post.author});
 				continue;
 			}
