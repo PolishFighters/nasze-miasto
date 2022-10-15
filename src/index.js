@@ -50,6 +50,7 @@ app.get("/post_error", require("./pages/post_error"));
 app.get("/post_added", require("./pages/post_added"));
 app.get("/create_post", require("./pages/create_post"));
 app.get("/signup", require("./pages/signup"));
+app.get("/post/:id", require("./pages/post"));
 
 app.use("/api/", require("./api/"));
 

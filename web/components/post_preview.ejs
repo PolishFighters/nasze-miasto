@@ -5,7 +5,9 @@
 			<a href="/api/like_post?post=<%- post.id %>" class="btn btn-primary">+1</a>
 		</div>
 		<div class="col">
-			<h2><%- post.title %></h2>
+			<a href="/post/<%- post.id %>">
+				<h2><%- post.title %></h2>
+			</a>
 			<% const author_user = locals.db.users.find(v=>v.id==post.author) %>
 			Autor: <%- author_user?.firstname %> <%- author_user?.lastname %>
 			<br/>
