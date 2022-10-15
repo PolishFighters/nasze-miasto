@@ -1,6 +1,7 @@
 const sessions = require("../sessions");
 const db = require("../db");
 const crypto = require("crypto");
+const recaptcha = require("../recaptcha");
 
 const hash = data => {
 	let sha = crypto.createHash("sha1");
@@ -10,10 +11,16 @@ const hash = data => {
 
 module.exports = (req, res) => {
 	if (sessions.logged_in(req)) {
-		res.redirect("/?msg=already_logged_in");
+		res.redirect("/signup?msg=already_logged_in");
 		return;
 	}
 	
+	const cresponse = req.body["g-recaptcha-response"];
+	if(!recaptcha(cresponse)) {
+		res.redirect("/signup?msg=captcha_failed");
+		return;
+	}
+
 	const {
 		first_name,
 		last_name,
@@ -23,13 +30,13 @@ module.exports = (req, res) => {
 	} = req.body;
 
 	if (password != confirm_password) {
-		res.redirect("/?msg=passwords_do_not_match");
+		res.redirect("/signup?msg=passwords_do_not_match");
 		return;
 	}
 
 	const user = db.db.users.find(v => v.email == email);
 	if (user != undefined) {
-		res.redirect("/?msg=address_is_not_available");
+		res.redirect("/signup?msg=address_is_not_available");
 		return;
 	}
 

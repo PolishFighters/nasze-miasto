@@ -1,6 +1,7 @@
 <%- include("../partials/header") %>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <title>Zgłoś pomysł</title>
 <div class="container">
@@ -18,6 +19,7 @@
 				const simplemde = new SimpleMDE({ element: document.getElementById("post_content_ta"), spellChecker: false });
 			</script>
 		</div>
+		<div class="g-recaptcha" data-sitekey="6LfhM4MiAAAAAHfLrTt_b02N-At25y5_57PmVsFJ"></div>
 		<button class="btn btn-primary" type="submit">Wyślij</button>
 	</form>
 </div>

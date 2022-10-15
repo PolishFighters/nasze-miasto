@@ -1,5 +1,6 @@
 <%- include("../partials/header") %>
 <title>Rejestracja</title>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <div class="container">
 	<div class="pb-2 mb-2 border-bottom">
 		<h3>Załóż konto</h3>
@@ -25,6 +26,7 @@
 			<label class="form-label" for="login_form_confirm_password">Potwierdź hasło</label>
 			<input class="form-control" type="password" name="confirm_password" id="login_form_confirm_password">
 		</div>
+		<div class="g-recaptcha" data-sitekey="6LfhM4MiAAAAAHfLrTt_b02N-At25y5_57PmVsFJ"></div>
 		<button class="btn btn-primary" type="submit">Załóż konto</button>
 	</form>
 <%- include("../partials/footer") %>

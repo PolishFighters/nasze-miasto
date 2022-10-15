@@ -1,9 +1,16 @@
 const sessions = require("../sessions");
 const db = require("../db");
+const recaptcha = require("../recaptcha");
 
 module.exports = (req, res) => {
 	if (!sessions.logged_in(req)) {
 		res.redirect("/login");
+		return;
+	}
+
+	const cresponse = req.body["g-recaptcha-response"];
+	if(!recaptcha(cresponse)) {
+		res.redirect("/signup?msg=captcha_failed");
 		return;
 	}
 
