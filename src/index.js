@@ -22,7 +22,7 @@ const sessions = require("./sessions");
 db.load();
 
 app.use(express.static("node_modules/bootstrap/dist/"));
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 app.set("views", "web");
 
 app.get("/", (req, res) => {
-	const sorted_posts = db.db.posts.sort((a, b) => b.created_at.getTime() - a.created_at.getTime() );
+	const sorted_posts = db.db.posts.sort((a, b) => b.created_at.getTime() - a.created_at.getTime());
 	res.render("pages/index", { posts: sorted_posts });
 });
 
