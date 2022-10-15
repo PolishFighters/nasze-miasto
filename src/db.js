@@ -171,7 +171,7 @@ module.exports = {
 			module.exports.db.users.splice(1);
 			module.exports.db.posts.splice(1);
 			module.exports.load();
-		}).catch(err=>console.error(err));
+		}).catch(err=>console.error(err, `\n\nFailed with query: ${sql}`));
 	},
 	decode: decode,
 	encode: encode
