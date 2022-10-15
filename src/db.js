@@ -135,7 +135,7 @@ module.exports = {
 			const post = module.exports.db.posts[pi];
 			const old_index = original_state.posts?.findIndex(v=>v.id==post.id) ?? -1;
 			if(old_index < 0) {
-				changes.push(`INSERT INTO posts VALUES (DEFAULT, '${encode(post.content)}', ${post.likes}, ${post.deleted}, ${post.author}, ${encode(post.title)}, '${post.created_at.toISOString()}')`);
+				changes.push(`INSERT INTO posts VALUES (DEFAULT, '${encode(post.content)}', ${post.likes}, ${post.deleted}, ${post.author}, '${encode(post.title)}', '${post.created_at.toISOString()}')`);
 				original_state.posts.push({id: post.id, content: post.content, likes: post.likes, deleted: post.deleted, author: post.author});
 				continue;
 			}
