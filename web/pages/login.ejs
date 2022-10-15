@@ -1,12 +1,20 @@
 <%- include("../partials/header") %>
-	<title>Logowanie</title>
-	<form action="/api/login" method="post">
-		<label for="login_form_email">Email</label>
-		<input type="email" name="email" id="login_form_email">
-		<br/>
-		<label for="login_form_password">Hasło</label>
-		<input type="password" name="password" id="login_form_password">
-		<br/>
-		<input type="submit" value="Zaloguj się">
+<title>Logowanie</title>
+<div class="container">
+	<div class="pb-2 mb-2 border-bottom">
+		<h3>Zaloguj się na swoje konto</h3>
+	</div>
+	<form class="mb-5" action="/api/login" method="post">
+		<div class="mb-3">
+			<label class="form-label" for="inputEmail3">Email</label>
+			<input class="form-control" type="email" name="email" id="login_form_email">
+		</div>
+		<div class="mb-3">
+			<label class="form-label" for="inputPassword3">Hasło</label>
+			<input class="form-control" type="password" name="password" id="login_form_password">
+		</div>
+		<button class="btn btn-primary" type="submit">Zaloguj się</button>
 	</form>
+	<a class="btn btn-primary btn-success" href="/signup">Utwórz nowe konto</a>
+</div>
 <%- include("../partials/footer") %>
