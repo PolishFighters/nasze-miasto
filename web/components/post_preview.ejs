@@ -2,7 +2,13 @@
 	<div class="row">
 		<div class="col-1">
 			<h1><%- post.likes %></h1>
+			<% if(locals.logged_in) {%>
+			
+			<%if( locals.user.liked.find(v => v == post.id) == undefined ) { %>
 			<a href="/api/like_post?post=<%- post.id %>" class="btn btn-primary">+1</a>
+			<% } else {%>
+			<a href="/api/unlike_post?post=<%- post.id %>" class="btn btn-primary">-1</a>
+			<% }} %>
 		</div>
 		<div class="col">
 			<a href="/post/<%- post.id %>">
