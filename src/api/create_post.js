@@ -10,21 +10,21 @@ module.exports = (req, res) => {
 
 	const cresponse = req.body["g-recaptcha-response"];
 	if(!recaptcha(cresponse)) {
-		res.redirect("/signup?msg=captcha_failed");
+		res.redirect("/post_error?msg=captcha_failed");
 		return;
 	}
 
 	const title = req.body.title;
 	if(title==undefined)
 	{
-		res.redirect("/post_error");
+		res.redirect("/post_error?msg=no_title");
 		return;
 	}
 
 	const content = req.body.content;
 	if(content==undefined)
 	{
-		res.redirect("/post_error");
+		res.redirect("/post_error?msg=no_content");
 		return;
 	}
 
