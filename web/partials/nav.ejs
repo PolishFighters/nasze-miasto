@@ -6,9 +6,12 @@
 		  </button>	
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">	
 			<div class="navbar-nav">
-				<a class="nav-link" href="/create_post">Zgłoś pomysł</a>
-				<a class="nav-link" href="/login">Zaloguj się</a>
-				<a class="nav-link" href="/api/logout">Wyloguj się</a>
+				<% if (locals.logged_in) { %>
+					<a class="nav-link" href="/create_post">Zgłoś pomysł</a>
+					<a class="nav-link" href="/api/logout">Wyloguj się</a>
+				<% } else { %>
+					<a class="nav-link" href="/login">Zaloguj się</a>
+				<% } %>
 			</div>		
 		</div>
 	</div>

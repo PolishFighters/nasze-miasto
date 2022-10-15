@@ -31,6 +31,12 @@ app.use(fileUpload({
 	createParentPath: true
 }));
 
+app.use((req, res, next) => {
+	res.locals.user = sessions.user_from_session(req.cookies.session);
+	res.locals.logged_in = res.locals.user != undefined;
+	next();
+});
+
 app.set("views", "web");
 
 app.get("/", (req, res) => {
