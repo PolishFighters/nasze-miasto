@@ -120,7 +120,7 @@ module.exports = {
 				original_state.users[old_index].email = user.email;
 			}
 			if(old_version.password != user.password) {
-				changes.push(`UPDATE users SET password='${encode(user.password)}' WHERE id=${user.id}`);
+				changes.push(`UPDATE users SET password='${user.password}' WHERE id=${user.id}`);
 				original_state.users[old_index].password = user.password;
 			}
 			const liked_old_rep = old_version.liked.join(",");
@@ -157,7 +157,7 @@ module.exports = {
 				original_state.posts[old_index].author = post.author;
 			}
 			if(old_version.title != post.title) {
-				changes.push(`UPDATE posts SET title='${post.title}' WHERE id=${post.id}`);
+				changes.push(`UPDATE posts SET title='${encode(post.title)}' WHERE id=${post.id}`);
 				original_state.posts[old_index].title = post.title;
 			}
 			if(old_version.created_at != post.created_at) {
