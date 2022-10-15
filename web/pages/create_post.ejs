@@ -1,6 +1,12 @@
 <%- include("../partials/header") %>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/fr6kjy3uthc0coft8ony3vo5wdtv9k5xqufxb35pts3gsh2y/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+	tinymce.init({
+		selector: "textarea#post_content_ta",
+		plugins: "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tableofcontents footnotes autocorrect",
+		toolbar: "undo redo bold italic underline strikethrough | link image media table | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+	});
+</script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <title>Zgłoś pomysł</title>
@@ -15,9 +21,6 @@
 		</div>
 		<div class="mb-3">
 			<textarea name="content" id="post_content_ta" placeholder="Jaki masz pomysł na modernizację naszego miasta?"></textarea>
-			<script>
-				const simplemde = new SimpleMDE({ element: document.getElementById("post_content_ta"), spellChecker: false });
-			</script>
 		</div>
 		<div class="g-recaptcha" data-sitekey="6LfhM4MiAAAAAHfLrTt_b02N-At25y5_57PmVsFJ"></div>
 		<button class="btn btn-primary" type="submit">Wyślij</button>
