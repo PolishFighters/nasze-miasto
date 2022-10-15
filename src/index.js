@@ -39,7 +39,7 @@ app.get("/login", require("./pages/login"));
 app.get("/post_error", require("./pages/post_error"));
 app.get("/post_added", require("./pages/post_added"));
 app.get("/create_post", require("./pages/create_post"));
-app.get("/singup", require("./pages/singup"));
+app.get("/signup", require("./pages/signup"));
 
 app.use("/api/", require("./api/"));
 

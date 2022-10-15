@@ -4,5 +4,5 @@ module.exports = (req, res) => {
 		res.redirect("/?msg=already_logged_in");
 		return;
 	}
-	res.render("pages/singup.ejs");
+	res.render("pages/signup");
 };
