@@ -17,7 +17,7 @@
 			<% const author_user = locals.db.users.find(v=>v.id==post.author) %>
 			Autor: <%- author_user?.firstname %> <%- author_user?.lastname %>
 			<br/>
-			Miasto: Not implemented yet! :(
+			Miasto: <%= post.city %>
 		</div>
 	</div>
 </div>

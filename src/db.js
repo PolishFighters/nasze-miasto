@@ -52,7 +52,8 @@ module.exports = {
 				deleted: false,
 				author: 0,
 				title: "",
-				created_at: new Date()
+				created_at: new Date(),
+				city: ""
 			}
 		]
 	},
@@ -88,7 +89,8 @@ module.exports = {
 					deleted: row.deleted,
 					author: row.author,
 					title: decode(row.title),
-					created_at: row.created_at
+					created_at: row.created_at,
+					city: decode(row.city)
 				});
 			}
 			// FIXME: Find a better way to clone an object
@@ -135,8 +137,8 @@ module.exports = {
 			const post = module.exports.db.posts[pi];
 			const old_index = original_state.posts?.findIndex(v=>v.id==post.id) ?? -1;
 			if(old_index < 0) {
-				changes.push(`INSERT INTO posts (id, content, likes, deleted, author, title, created_at) VALUES (DEFAULT, '${encode(post.content)}', ${post.likes}, ${post.deleted}, ${post.author}, '${encode(post.title)}', '${post.created_at.toISOString()}')`);
-				original_state.posts.push({id: post.id, content: post.content, likes: post.likes, deleted: post.deleted, author: post.author});
+				changes.push(`INSERT INTO posts (id, content, likes, deleted, author, title, created_at, city) VALUES (DEFAULT, '${encode(post.content)}', ${post.likes}, ${post.deleted}, ${post.author}, '${encode(post.title)}', '${post.created_at.toISOString()}', '${encode(city)}')`);
+				original_state.posts.push({id: post.id, content: post.content, likes: post.likes, deleted: post.deleted, author: post.author, city: post.city });
 				continue;
 			}
 			const old_version = original_state.posts[old_index];
@@ -163,6 +165,10 @@ module.exports = {
 			if(old_version.created_at != post.created_at) {
 				changes.push(`UPDATE posts SET created_at='${post.created_at.toISOString()}' WHERE id=${post.id}`);
 				original_state.posts[old_index].created_at = post.created_at;
+			}
+			if(old_version.city != post.city) {
+				changes.push(`UPDATE posts SET city='${encode(post.city)}' WHERE id=${post.id}`);
+				original_state.posts[old_index].city = post.city;
 			}
 		}
 		const sql = changes.join(";");

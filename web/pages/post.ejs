@@ -9,7 +9,7 @@
 		<% const author_user = locals.db.users.find(v=>v.id==post.author) %>
 		<span>Autor: <%- author_user?.firstname %> <%- author_user?.lastname %></span>
 		<span class="text-muted">|</span>
-		<span>Miasto: Not implemented yet! :(</span>
+		<span>Miasto: <%= post.city %></span>
 		<span class="text-muted">|</span>
 		<span>Data dodania: <%- post.created_at?.toLocaleString("pl-pl") %></span>
     </div>
