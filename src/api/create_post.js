@@ -9,7 +9,7 @@ module.exports = (req, res) => {
 	}
 
 	const cresponse = req.body["g-recaptcha-response"];
-	if(!recaptcha(cresponse)) {
+	if (!recaptcha(cresponse)) {
 		res.redirect("/post_error?msg=captcha_failed");
 		return;
 	}
@@ -19,31 +19,25 @@ module.exports = (req, res) => {
 		content,
 		city
 	} = req.body;
-	if(title==undefined)
-	{
+	if (title == undefined) {
 		res.redirect("/post_error?msg=no_title");
 		return;
 	}
-	if(content==undefined)
-	{
+	if (content == undefined) {
 		res.redirect("/post_error?msg=no_content");
 		return;
 	}
-	if(city==undefined)
-	{
+	if (city == undefined) {
 		res.redirect("/post_error?msg=no_city");
 		return;
 	}
 
-	const is_city_exit = db.db.cities.find(v => v.name == city) != undefined;
-	if(!is_city_exit)
-	{
+	const city_exists = db.db.cities.find(v => v.name == city) != undefined;
+	if (!city_exists) {
 		res.redirect("/post_error?msg=city_doesnt_exits");
 		return;
 	}
 
-
-			
 	db.db.posts.push({
 		id: db.db.posts.length + 10,
 		content: content,
@@ -54,7 +48,8 @@ module.exports = (req, res) => {
 		created_at: new Date(Date.now()),
 		city: city
 	});
+
 	db.save();
-	
+
 	res.redirect("/post_added");
 };
