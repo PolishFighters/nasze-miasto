@@ -160,7 +160,7 @@ module.exports = {
 			const post = module.exports.db.posts[pi];
 			const old_index = original_state.posts?.findIndex(v=>v.id==post.id) ?? -1;
 			if(old_index < 0) {
-				changes.push(`INSERT INTO posts (id, content, likes, deleted, author, title, created_at, city) VALUES (DEFAULT, '${encode(post.content)}', ${post.likes}, ${post.deleted}, ${post.author}, '${encode(post.title)}', '${post.created_at.toISOString()}', '${encode(city)}')`);
+				changes.push(`INSERT INTO posts (id, content, likes, deleted, author, title, created_at, city) VALUES (DEFAULT, '${encode(post.content)}', ${post.likes}, ${post.deleted}, ${post.author}, '${encode(post.title)}', '${post.created_at.toISOString()}', '${encode(post.city)}')`);
 				original_state.posts.push({id: post.id, content: post.content, likes: post.likes, deleted: post.deleted, author: post.author, city: post.city });
 				continue;
 			}
@@ -196,7 +196,7 @@ module.exports = {
 		}
 
 		for (let ci = 0; ci < module.exports.db.cities.length; ci++) {
-			const city = module.exports.db.posts[ci];
+			const city = module.exports.db.cities[ci];
 			const old_index = original_state.cities?.findIndex(v=>v.id==city.id) ?? -1;
 			if(old_index < 0) {
 				changes.push(`INSERT INTO cities (id, name) VALUES (DEFAULT, '${encode(city.name)}')`);
