@@ -17,18 +17,19 @@
 
 	<form action="/api/create_post" method="post">
 		<div class="mb-3">
-			<label for="city">Miasto <span class="mandatory">*</span></label>
-			<select id="city" name="city" class="form-select" required aria-required="true" required="">
-				<% locals.db.cities.forEach((city)=>{%>
-					<option value="<%=city.name%>"><%=city.name%></option>
-					<%});%>
-			</select>
-		</div>
-
-		<div class="mb-3">
 			<label for="title">Tytuł pomysłu <span class="mandatory">*</span></label>
 			<input id="title" class="form-control" name="title" placeholder="Tytuł" type="text" required aria-required="true" required=""/>
 		</div>
+
+		<div class="mb-3">
+			<label for="city">Miasto <span class="mandatory">*</span></label>
+			<select id="city" name="city" class="form-select" required aria-required="true" required="">
+				<% locals.db.cities.forEach((city)=>{ %>
+					<option value="<%=city.name%>"><%= city.name %></option>
+				<% }); %>
+			</select>
+		</div>
+
 		<div class="mb-3">
 			<label for="post_content_ta">Treść pomysłu <span class="mandatory">*</span></label>
 			<textarea name="content" id="post_content_ta" placeholder="Jaki masz pomysł na modernizację naszego miasta?"></textarea>
