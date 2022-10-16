@@ -253,7 +253,7 @@ module.exports = {
 				original_state.comments.push({ id: comment.id, author: comment.author, post: comment.post, content: comment.content, deleted: comment.deleted });
 				continue;
 			}
-			const old_version = original_state.cities[old_index];
+			const old_version = original_state.comments[old_index];
 			if (old_version.author != comment.author) {
 				changes.push(`UPDATE comments SET author=${comment.author} WHERE id=${comment.id}`);
 				original_state.comments[old_index].author = comment.author;
