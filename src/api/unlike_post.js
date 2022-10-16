@@ -23,7 +23,8 @@ module.exports = (req, res) => {
 		return;
 	}
 
-	db.db.users[user_index].liked.pop(post_id);
+	const post_id_index = db.db.users[user_index].liked.findIndex(v=>v==post_id);
+	db.db.users[user_index].liked.splice(post_id_index, 1);
 	db.db.posts[post_index].likes--;
 	db.save();
 
