@@ -19,9 +19,9 @@
 		<div class="mb-3">
 			<label for="city">Miasto <span class="mandatory">*</span></label>
 			<select id="city" name="city" class="form-select" required aria-required="true" required="">
-				<% locals.db.cities.forEach((city)=>{%>
-					<option value="<%=city.name%>"><%=city.name%></option>
-					<%});%>
+				<% locals.db.cities.forEach((city)=>{ %>
+					<option value="<%=city.name%>"><%= city.name %></option>
+				<% }); %>
 			</select>
 		</div>
 
