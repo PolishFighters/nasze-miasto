@@ -28,5 +28,7 @@ module.exports = (req, res) => {
 		});
 	}
 
+	processed_comments.reverse();
+
 	res.render("pages/post", { post: post, xss: xss(post.content), comments: processed_comments });
 };
