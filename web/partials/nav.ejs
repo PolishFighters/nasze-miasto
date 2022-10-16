@@ -11,6 +11,9 @@
 			<div class="navbar-nav">
 				<% if (locals.logged_in) { %>
 					<a class="nav-link" href="/create_post">Zgłoś pomysł</a>
+					<% if (locals.user.admin) { %>
+						<a href="/admin" class="nav-link">Panel Administratora</a>
+					<% } %>
 					<a class="nav-link" href="/api/logout">Wyloguj się</a>
 				<% } else { %>
 					<a class="nav-link" href="/login">Zaloguj się</a>

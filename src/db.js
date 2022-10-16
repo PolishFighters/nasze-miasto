@@ -42,7 +42,8 @@ module.exports = {
 				lastname: "Kowalski",
 				email: "jkowalski@example.com",
 				password: "ff174f1711656f0f640a0e66442dc58c6efb00d5",
-				liked: [0, 1, 2]
+				liked: [0, 1, 2],
+				admin: false
 			}
 		],
 		posts: [
@@ -77,7 +78,8 @@ module.exports = {
 					lastname: decode(row.lastname),
 					email: decode(row.email),
 					password: row.password,
-					liked: row.liked.split(",").filter(v => v.length > 0).map(v => parseInt(v) ?? -1)
+					liked: row.liked.split(",").filter(v => v.length > 0).map(v => parseInt(v) ?? -1),
+					admin: row.admin
 				});
 				// FIXME: Find a better way to clone an object
 				original_state.users = JSON.parse(JSON.stringify(module.exports.db.users));
@@ -127,7 +129,7 @@ module.exports = {
 			const user = module.exports.db.users[ui];
 			const old_index = original_state.users?.findIndex(v => v.id == user.id) ?? -1;
 			if (old_index < 0) {
-				changes.push(`INSERT INTO users (id, firstname, lastname, email, password, liked) VALUES (DEFAULT, '${encode(user.firstname)}', '${encode(user.lastname)}', '${encode(user.email)}', '${user.password}', '${user.liked.join(",")}')`);
+				changes.push(`INSERT INTO users (id, firstname, lastname, email, password, liked, admin) VALUES (DEFAULT, '${encode(user.firstname)}', '${encode(user.lastname)}', '${encode(user.email)}', '${user.password}', '${user.liked.join(",")}', ${user.admin})`);
 				original_state.users.push({ id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email, password: user.password, liked: user.liked });
 				continue;
 			}
@@ -153,6 +155,10 @@ module.exports = {
 			if (liked_old_rep != liked_rep) {
 				changes.push(`UPDATE users SET liked='${liked_rep}' WHERE id=${user.id}`);
 				original_state.users[old_index].liked = JSON.parse(JSON.stringify(user.liked));
+			}
+			if (old_version.admin != user.admin) {
+				changes.push(`UPDATE users SET admin=${user.admin} WHERE id=${user.id}`);
+				original_state.users[old_index].admin = user.admin;
 			}
 		}
 
