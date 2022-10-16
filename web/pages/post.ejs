@@ -1,5 +1,16 @@
 <% const post = locals.post ?? {} %>
 <%- include("../partials/header") %>
+
+<script src="https://cdn.tiny.cloud/1/fr6kjy3uthc0coft8ony3vo5wdtv9k5xqufxb35pts3gsh2y/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+	tinymce.init({
+		selector: "textarea#comment_content_ta",
+		plugins: "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tableofcontents footnotes autocorrect",
+		toolbar: "undo redo bold italic underline strikethrough | link image media table | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+	});
+</script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <title>Post: <%= post.title %></title>
 <div class="container">
     <div class="pb-2 mb-2 border-bottom">
@@ -16,5 +27,24 @@
     <div class="pb-2 mb-2">
         <%- locals.xss %>
     </div>
+    <div class="pb-2 mb-2">
+		<h4 class="border-bottom">Komentarze</h4>
+        <% comments.forEach( comment => { %>
+			<%- include("../components/comment", {comment: comment}) %>
+        <% }); %>
+    </div>
+	<% if(locals.logged_in) { %>
+		<div class="pb-2 mb-2">
+			<h4 class="border-bottom">Zostaw nowy komentarz</h4>
+			<form action="/api/add_comment" method="post">
+				<input type="hidden" name="post_id" value="<%- post.id %>">
+				<div class="mb-3">
+					<textarea name="content" id="comment_content_ta" placeholder="Treść komentarza"></textarea>
+				</div>
+				<div class="g-recaptcha" data-sitekey="6LfhM4MiAAAAAHfLrTt_b02N-At25y5_57PmVsFJ"></div>
+				<button class="btn btn-primary" type="submit">Wyślij</button>
+			</form>
+		</div>
+	<% } %>
 </div>
 <%- include("../partials/footer") %>
