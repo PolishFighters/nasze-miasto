@@ -1,24 +1,28 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
-	<div class="container">
+	<div class="container-fluid">
 		<a class="navbar-brand" href="/">
-			<img src="/static/logo.png" width="70" class="d-inline-block align-top" alt="">
-			Nasze Miasto
+			<img src="/static/logo.png" width="200" class="d-inline-block align-top" alt="">
 		</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		  </button>	
-		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">	
-			<div class="navbar-nav">
-				<% if (locals.logged_in) { %>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="mynavbar">
+		<% if (locals.logged_in) { %>
+		<ul class="navbar-nav me-auto">	  
+				<li class="nav-item">
 					<a class="nav-link" href="/create_post">Zgłoś pomysł</a>
-					<% if (locals.user.admin) { %>
-						<a href="/admin" class="nav-link">Panel Administratora</a>
-					<% } %>
-					<a class="nav-link" href="/api/logout">Wyloguj się</a>
-				<% } else { %>
-					<a class="nav-link" href="/login">Zaloguj się</a>
+				</li>
+				<% if(locals.user.admin) { %>
+					<li class="nav-item">
+						<a class="nav-link" href="/admin">Panel Adminsitratora</a>
+					</li>
 				<% } %>
-			</div>		
+			</ul>
+		<a class="nav-link" href="/api/logout">Wyloguj się</a>
+		<% } else { %>
+		<ul class="navbar-nav me-auto"></ul>
+		<a class="nav-link" href="/login">Zaloguj się</a>
+		<% } %>
 		</div>
 	</div>
 </nav>
