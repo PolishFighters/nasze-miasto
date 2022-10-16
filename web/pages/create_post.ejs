@@ -17,10 +17,18 @@
 
 	<form action="/api/create_post" method="post">
 		<div class="mb-3">
-			<input class="form-control" name="title" placeholder="Tytuł" type="text" />
+			<label for="city">Miasto <span class="mandatory">*</span></label>
+			<select id="city" name="city" class="form-select" required aria-required="true" required="">
+			</select>
+		</div>
+
+		<div class="mb-3">
+			<label for="title">Tytuł pomysłu <span class="mandatory">*</span></label>
+			<input id="title" class="form-control" name="title" placeholder="Tytuł" type="text" required aria-required="true" required=""/>
 		</div>
 		<div class="mb-3">
-			<textarea name="content" id="post_content_ta" placeholder="Jaki masz pomysł na modernizację naszego miasta?"></textarea>
+			<label for="post_content_ta">Treść pomysłu <span class="mandatory">*</span></label>
+			<textarea name="content" id="post_content_ta" placeholder="Jaki masz pomysł na modernizację naszego miasta?" required aria-required="true" required=""></textarea>
 		</div>
 		<div class="g-recaptcha" data-sitekey="6LfhM4MiAAAAAHfLrTt_b02N-At25y5_57PmVsFJ"></div>
 		<button class="btn btn-primary" type="submit">Wyślij</button>
