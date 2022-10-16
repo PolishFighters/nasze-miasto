@@ -31,7 +31,8 @@ const encode = data => {
 let original_state = {
 	users: [],
 	posts: [],
-	cities: []
+	cities: [],
+	comments: []
 };
 module.exports = {
 	db: {
@@ -62,6 +63,15 @@ module.exports = {
 			{
 				id: 0,
 				name: ""
+			}
+		],
+		comments: [
+			{
+				id: 0,
+				author: 0,
+				post: 0,
+				content: "",
+				deleted: false
 			}
 		]
 	},
@@ -120,6 +130,25 @@ module.exports = {
 			}
 
 			original_state.cities = JSON.parse(JSON.stringify(module.exports.db.cities));
+		}).catch(err => console.error(err));
+
+		pool.query("SELECT * FROM comments").then(res => {
+			// Remove the sample comment
+			module.exports.db.comments.pop();
+			const rows = res.rows;
+
+			for (let ri = 0; ri < rows.length; ri++) {
+				const row = rows[ri];
+				module.exports.db.comments.push({
+					id: row.id,
+					author: row.author,
+					post: row.post,
+					content: decode(row.content),
+					deleted: row.deleted
+				});
+			}
+
+			original_state.comments = JSON.parse(JSON.stringify(module.exports.db.comments));
 		}).catch(err => console.error(err));
 	},
 	save: () => {
@@ -216,12 +245,43 @@ module.exports = {
 			}
 		}
 
+		for (let ci = 0; ci < module.exports.db.comments.length; ci++) {
+			const comment = module.exports.db.comments[ci];
+			const old_index = original_state.comments?.findIndex(v => v.id == comment.id) ?? -1;
+			if (old_index < 0) {
+				changes.push(`INSERT INTO comments (id, author, post, content, deleted) VALUES (DEFAULT, ${comment.author}, ${comment.post}, '${encode(comment.content)}', ${comment.deleted})`);
+				original_state.comments.push({ id: comment.id, author: comment.author, post: comment.post, content: comment.content, deleted: comment.deleted });
+				continue;
+			}
+			const old_version = original_state.cities[old_index];
+			if (old_version.author != comment.author) {
+				changes.push(`UPDATE comments SET author=${comment.author} WHERE id=${comment.id}`);
+				original_state.comments[old_index].author = comment.author;
+			}
+
+			if (old_version.post != comment.post) {
+				changes.push(`UPDATE comments SET post=${comment.post} WHERE id=${comment.id}`);
+				original_state.comments[old_index].post = comment.post;
+			}
+
+			if (old_version.content != comment.content) {
+				changes.push(`UPDATE comments SET content='${encode(comment.content)}' WHERE id=${comment.id}`);
+				original_state.comments[old_index].content = comment.content;
+			}
+
+			if (old_version.deleted != comment.deleted) {
+				changes.push(`UPDATE comments SET deleted=${comment.deleted} WHERE id=${comment.id}`);
+				original_state.comments[old_index].deleted = comment.deleted;
+			}
+		}
+
 		const sql = changes.join(";");
 		if (sql.length == 0) return;
 		pool.query(sql).then(res => {
 			module.exports.db.users.splice(1);
 			module.exports.db.posts.splice(1);
 			module.exports.db.cities.splice(1);
+			module.exports.db.comments.splice(1);
 			module.exports.load();
 		}).catch(err => console.error(err, `\n\nFailed with query: ${sql}`));
 	},
