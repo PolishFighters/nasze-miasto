@@ -15,5 +15,18 @@ module.exports = (req, res) => {
 		return;
 	}
 
-	res.render("pages/post", { post: post, xss: xss(post.content) });
+	const comments = db.db.comments.filter(v=>v.post==post_id);
+
+	let processed_comments = [];
+
+	for (let ci = 0; ci < comments.length; ci++) {
+		const comment = comments[ci];
+		const user = db.db.users.find(v=>v.id==comment.author);
+		processed_comments.push({
+			author: `${user.firstname} ${user.lastname}`,
+			content: xss(comment.content)
+		});
+	}
+
+	res.render("pages/post", { post: post, xss: xss(post.content), comments: processed_comments });
 };
