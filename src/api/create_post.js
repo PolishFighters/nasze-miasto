@@ -14,20 +14,36 @@ module.exports = (req, res) => {
 		return;
 	}
 
-	const title = req.body.title;
+	const {
+		title,
+		content,
+		city
+	} = req.body;
 	if(title==undefined)
 	{
 		res.redirect("/post_error?msg=no_title");
 		return;
 	}
-
-	const content = req.body.content;
 	if(content==undefined)
 	{
 		res.redirect("/post_error?msg=no_content");
 		return;
 	}
+	if(city==undefined)
+	{
+		res.redirect("/post_error?msg=no_city");
+		return;
+	}
 
+	const is_city_exit = db.db.cities.find(v => v.name == city) != undefined;
+	if(!is_city_exit)
+	{
+		res.redirect("/post_error?msg=city_doesnt_exits");
+		return;
+	}
+
+
+			
 	db.db.posts.push({
 		id: db.db.posts.length + 10,
 		content: content,
@@ -35,7 +51,8 @@ module.exports = (req, res) => {
 		deleted: false,
 		author: sessions.user_from_session(req.cookies.session).id,
 		title: title,
-		created_at: new Date(Date.now())
+		created_at: new Date(Date.now()),
+		city: city
 	});
 	db.save();
 	

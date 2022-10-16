@@ -31,6 +31,7 @@ const encode = data => {
 let original_state = {
 	users: [],
 	posts: [],
+	cities: []
 };
 module.exports = {
 	db: {
@@ -54,6 +55,12 @@ module.exports = {
 				title: "",
 				created_at: new Date(),
 				city: ""
+			}
+		],
+		cities: [
+			{
+				id: 0,
+				name: ""
 			}
 		]
 	},
@@ -96,6 +103,22 @@ module.exports = {
 			// FIXME: Find a better way to clone an object
 			original_state.posts = JSON.parse(JSON.stringify(module.exports.db.posts));
 		}).catch(err=>console.error(err));
+
+		pool.query("SELECT * FROM cities").then(res=>{
+			// Remove the sample city
+			module.exports.db.cities.pop();
+			const rows = res.rows;
+
+			for(let ri = 0; ri < rows.length; ri++){
+				const row = rows[ri];
+				module.exports.db.cities.push({
+					id: row.id,
+					name: decode(row.name)
+				});
+			}
+
+			original_state.cities = JSON.parse(JSON.stringify(module.exports.db.cities));
+		}).catch(err=>console.error(err));
 	},
 	save: () => {
 		let changes = [];
@@ -137,7 +160,7 @@ module.exports = {
 			const post = module.exports.db.posts[pi];
 			const old_index = original_state.posts?.findIndex(v=>v.id==post.id) ?? -1;
 			if(old_index < 0) {
-				changes.push(`INSERT INTO posts (id, content, likes, deleted, author, title, created_at, city) VALUES (DEFAULT, '${encode(post.content)}', ${post.likes}, ${post.deleted}, ${post.author}, '${encode(post.title)}', '${post.created_at.toISOString()}', '${encode(city)}')`);
+				changes.push(`INSERT INTO posts (id, content, likes, deleted, author, title, created_at, city) VALUES (DEFAULT, '${encode(post.content)}', ${post.likes}, ${post.deleted}, ${post.author}, '${encode(post.title)}', '${post.created_at.toISOString()}', '${encode(post.city)}')`);
 				original_state.posts.push({id: post.id, content: post.content, likes: post.likes, deleted: post.deleted, author: post.author, city: post.city });
 				continue;
 			}
@@ -171,11 +194,28 @@ module.exports = {
 				original_state.posts[old_index].city = post.city;
 			}
 		}
+
+		for (let ci = 0; ci < module.exports.db.cities.length; ci++) {
+			const city = module.exports.db.cities[ci];
+			const old_index = original_state.cities?.findIndex(v=>v.id==city.id) ?? -1;
+			if(old_index < 0) {
+				changes.push(`INSERT INTO cities (id, name) VALUES (DEFAULT, '${encode(city.name)}')`);
+				original_state.cities.push({id: city.id, content: city.name });
+				continue;
+			}
+			const old_version = original_state.cities[old_index];
+			if(old_version.name != city.name) {
+				changes.push(`UPDATE cities SET name='${encode(city.name)}' WHERE id=${city.id}`);
+				original_state.cities[old_index].name = city.name;
+			}
+		}
+
 		const sql = changes.join(";");
 		if(sql.length==0) return;
 		pool.query(sql).then(res=>{
 			module.exports.db.users.splice(1);
 			module.exports.db.posts.splice(1);
+			module.exports.db.cities.splice(1);
 			module.exports.load();
 		}).catch(err=>console.error(err, `\n\nFailed with query: ${sql}`));
 	},
