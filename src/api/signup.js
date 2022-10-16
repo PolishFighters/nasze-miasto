@@ -46,7 +46,8 @@ module.exports = (req, res) => {
 		lastname: last_name,
 		email: email,
 		password: hash(password),
-		liked: []
+		liked: [],
+		admin: false
 	});
 
 	db.save();
