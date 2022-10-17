@@ -1,0 +1,22 @@
+<%- include("../partials/header") %>
+<title>Moje Konto</title>
+<div class="container">
+	<div class="pb-2 mb-2 border-bottom">
+		<h2>Moje Konto</h2>
+	</div>
+	
+	<div class="pb-2 mb-2">
+		<h3>Moje ogłoszenia</h3>
+	</div>
+
+	<div class="pb-2 mb-2">
+		<p>
+			<% for (let pi = 0; pi < locals.posts.length; pi++) { %>
+				<% const post = locals.posts[pi] %>
+				<%- include("../components/post_preview", {post: post}) %>
+			<% } %>	
+		</p>
+	</div>
+
+</div>
+<%- include("../partials/footer") %>

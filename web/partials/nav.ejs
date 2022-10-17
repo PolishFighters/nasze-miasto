@@ -9,19 +9,20 @@
 		<div class="collapse navbar-collapse" id="mynavbar">
 		<% if (locals.logged_in) { %>
 		<ul class="navbar-nav me-auto">	  
+			<li class="nav-item">
+				<a class="nav-link" href="/create_post">Zgłoś pomysł</a>
+			</li>
+			<a class="nav-link" href="/me">Moje Konto</a>
+			<% if(locals.user.admin) { %>
 				<li class="nav-item">
-					<a class="nav-link" href="/create_post">Zgłoś pomysł</a>
+					<a class="nav-link" href="/admin">Panel Adminsitratora</a>
 				</li>
-				<% if(locals.user.admin) { %>
-					<li class="nav-item">
-						<a class="nav-link" href="/admin">Panel Adminsitratora</a>
-					</li>
-				<% } %>
-			</ul>
+			<% } %>
+		</ul>
 		<a class="nav-link" href="/api/logout">Wyloguj się</a>
 		<% } else { %>
-		<ul class="navbar-nav me-auto"></ul>
-		<a class="nav-link" href="/login">Zaloguj się</a>
+			<ul class="navbar-nav me-auto"></ul>
+			<a class="nav-link" href="/login">Zaloguj się</a>
 		<% } %>
 		</div>
 	</div>
