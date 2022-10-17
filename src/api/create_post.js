@@ -39,7 +39,7 @@ module.exports = (req, res) => {
 	}
 
 	db.db.posts.push({
-		id: db.db.posts.length + 10,
+		id: 0,
 		content: content,
 		likes: 0,
 		deleted: false,
