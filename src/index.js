@@ -52,6 +52,7 @@ app.get("/create_post", require("./pages/create_post"));
 app.get("/signup", require("./pages/signup"));
 app.get("/post/:id", require("./pages/post"));
 app.get("/admin", require("./pages/admin"));
+app.get("/me", require("./pages/me"));
 
 app.use("/api/", require("./api/"));
 
