@@ -9,12 +9,36 @@
 		<h3>Moje ogłoszenia</h3>
 	</div>
 
-	<div class="pb-2 mb-2">
+	<div class="pb-2 mb-3">
 		<p>
 			<% for (let pi = 0; pi < locals.posts.length; pi++) { %>
 				<% const post = locals.posts[pi] %>
 				<%- include("../components/post_preview", {post: post}) %>
 			<% } %>	
+		</p>
+	</div>
+	
+	<div class="pb-2 mb-2">
+		<h3>Zmiana hasła</h3>
+	</div>
+
+	<div class="pb-2 mb-3">
+		<p>
+			<form class="mb-5" action="/api/change_password" method="post">
+				<div class="mb-3">
+					<label class="form-label" for="login_form_old_password">Stare hasło</label>
+					<input class="form-control" type="password" name="old_password" id="login_form_old_password">
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="login_form_new_password">Nowe hasło</label>
+					<input class="form-control" type="password" name="new_password" id="login_form_new_password">
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="login_form_confirm_new_password">Potwierdź nowe hasło</label>
+					<input class="form-control" type="password" name="confirm_new_password" id="login_form_confirm_new_password">
+				</div>
+				<button class="btn btn-primary" type="submit">Zmień hasło</button>
+			</form>
 		</p>
 	</div>
 
