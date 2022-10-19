@@ -10,7 +10,7 @@ module.exports = (req, res) => {
 
 	const cresponse = req.body["g-recaptcha-response"];
 	if (!recaptcha(cresponse)) {
-		res.redirect("/post_error?msg=captcha_failed");
+		res.redirect("/create_post?msg=captcha_failed");
 		return;
 	}
 
@@ -20,21 +20,21 @@ module.exports = (req, res) => {
 		city
 	} = req.body;
 	if (title == undefined) {
-		res.redirect("/post_error?msg=no_title");
+		res.redirect("/create_post?msg=no_title");
 		return;
 	}
 	if (content == undefined) {
-		res.redirect("/post_error?msg=no_content");
+		res.redirect("/create_post?msg=no_content");
 		return;
 	}
 	if (city == undefined) {
-		res.redirect("/post_error?msg=no_city");
+		res.redirect("/create_post?msg=no_city");
 		return;
 	}
 
 	const city_exists = db.db.cities.find(v => v.name == city) != undefined;
 	if (!city_exists) {
-		res.redirect("/post_error?msg=city_doesnt_exits");
+		res.redirect("/create_post?msg=city_doesnt_exits");
 		return;
 	}
 
@@ -51,5 +51,5 @@ module.exports = (req, res) => {
 
 	db.save();
 
-	res.redirect("/post_added");
+	res.redirect("/");
 };
