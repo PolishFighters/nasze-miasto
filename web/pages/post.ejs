@@ -18,11 +18,9 @@
     </div>
     <div class="pb-2 mb-2">
 		<% const author_user = locals.db.users.find(v=>v.id==post.author) %>
-		<span>Autor: <%- author_user?.firstname %> <%- author_user?.lastname %></span>
-		<span class="text-muted">|</span>
-		<span>Miasto: <%= post.city %></span>
-		<span class="text-muted">|</span>
-		<span>Data dodania: <%- post.created_at?.toLocaleString("pl-pl") %></span>
+		<span class="post-page-stats"><i class="fa-solid fa-user"></i> <%- author_user?.firstname %> <%- author_user?.lastname %></span>
+		<span class="post-page-stats"><i class="fa-solid fa-city"></i> <%= post.city %></span>
+		<span class="post-page-stats"><i class="fa-solid fa-calendar-days"></i> <%- post.created_at?.toLocaleString("pl-pl") %></span>
     </div>
 	<% if (locals.user?.admin == true) { %>
 		<div class="pb-2 mb-2 card">
