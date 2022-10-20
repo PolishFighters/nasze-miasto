@@ -24,6 +24,16 @@
 		<span class="text-muted">|</span>
 		<span>Data dodania: <%- post.created_at?.toLocaleString("pl-pl") %></span>
     </div>
+	<% if (locals.user?.admin == true) { %>
+		<div class="pb-2 mb-2 card">
+			<div class="card-body">
+				<h5 class="card-title">Zarządzenie ogłoszeniem</h5>
+				<h6 class="card-subtitle mb-2 text-muted">Opcje administratora</h6>
+				<p class="card-text">Użyj przycisków poniżej by zarządzać widocznością tego ogłoszenia</p>
+				<a href="/api/delete_post?post=<%= post.id %>" class="btn btn-danger">Usuń ogłoszenie</a>
+			</div>
+		</div>
+	<% } %>
     <div class="pb-2 mb-2">
         <%- locals.xss %>
     </div>
