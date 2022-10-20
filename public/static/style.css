@@ -36,3 +36,7 @@ main {
 .fa-wrench, .fa-house-user, .fa-address-book, .fa-lightbulb {
 	transform: translate(-25%, 0%);
 }
+
+.like-heart-icon {
+	margin-right: 5px;
+}
