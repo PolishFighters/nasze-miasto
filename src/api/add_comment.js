@@ -32,15 +32,3 @@ module.exports = (req, res) => {
 	db.save();
 	res.redirect("/post/" + post_id);
 };
-
-// TypeError: Cannot read properties of undefined (reading 'author')
-//     at Object.save (d:\Gameefan\Visual Studio Code Projects\nasze-miasto\src\db.js:257:20)
-//     at module.exports (d:\Gameefan\Visual Studio Code Projects\nasze-miasto\src\api\add_comment.js:32:5)
-//     at Layer.handle [as handle_request] (d:\Gameefan\Visual Studio Code Projects\nasze-miasto\node_modules\express\lib\router\layer.js:95:5)
-//     at next (d:\Gameefan\Visual Studio Code Projects\nasze-miasto\node_modules\express\lib\router\route.js:144:13)
-//     at Route.dispatch (d:\Gameefan\Visual Studio Code Projects\nasze-miasto\node_modules\express\lib\router\route.js:114:3)
-//     at Layer.handle [as handle_request] (d:\Gameefan\Visual Studio Code Projects\nasze-miasto\node_modules\express\lib\router\layer.js:95:5)
-//     at d:\Gameefan\Visual Studio Code Projects\nasze-miasto\node_modules\express\lib\router\index.js:284:15
-//     at Function.process_params (d:\Gameefan\Visual Studio Code Projects\nasze-miasto\node_modules\express\lib\router\index.js:346:12)
-//     at next (d:\Gameefan\Visual Studio Code Projects\nasze-miasto\node_modules\express\lib\router\index.js:280:10)
-//     at Function.handle (d:\Gameefan\Visual Studio Code Projects\nasze-miasto\node_modules\express\lib\router\index.js:175:3)
