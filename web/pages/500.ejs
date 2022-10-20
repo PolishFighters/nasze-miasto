@@ -1,0 +1,20 @@
+<%- include("../partials/header") %>
+<title>Błąd 500</title>
+<div class="container">
+	<div class="pb-2 mb-2 border-bottom">
+		<h2><i style="color: red;" class="fa-solid fa-triangle-exclamation"></i> Błąd 500</h2>
+	</div>
+	<div class="pb-2 mb-2">
+		<p>Coś poszło nie tak, prosimy spróbować później.</p>
+		<% if(locals.err!=undefined) { %>
+			<p>
+				Jeżeli jest to możliwe to prosimy o podanie nam poniższych informacji:
+				<br/>
+				<pre>
+					<%= locals.err.stack %>
+				</pre>
+			</p>
+		<% } %>
+	</div>
+</div>
+<%- include("../partials/footer") %>

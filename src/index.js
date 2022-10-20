@@ -61,6 +61,14 @@ app.get("/contact", require("./pages/contact"));
 
 app.use("/api/", require("./api/"));
 
+app.use(require("./pages/404"));
+
+app.use(function (err, req, res, next) {
+	console.error(err.stack);
+	res.status(500);
+	res.render("pages/500", { err: err });
+});
+
 app.listen(port, () => {
 	console.log(`Listening at http://localhost:${port}`);
 });

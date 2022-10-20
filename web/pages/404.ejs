@@ -1,0 +1,17 @@
+<%- include("../partials/header") %>
+<title>Błąd 404</title>
+<div class="container">
+	<div class="pb-2 mb-2 border-bottom">
+		<h2>
+            <i style="color: red;" class="fa-solid fa-triangle-exclamation "></i> Błąd 404
+        </h2>
+	</div>
+	<div class="pb-2 mb-2">
+		<% if(locals.site != undefined) { %>
+			<p>Strona <b><%= locals.site %></b> nie istnieje</p>
+		<% } else { %>
+			<p>Żądana strona nie została znaleziona</p>
+		<% } %>
+	</div>
+</div>
+<%- include("../partials/footer") %>
