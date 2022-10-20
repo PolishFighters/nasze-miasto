@@ -44,3 +44,7 @@ main {
 .post-page-stats {
 	margin-right: 20px;
 }
+
+.fa-lightbulb:hover {
+	color: yellow;	
+}
