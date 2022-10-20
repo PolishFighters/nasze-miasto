@@ -52,3 +52,8 @@ main {
 .profile-con{
 	padding: 3rem;
 }
+
+.comment-content {
+	padding-left: 20px;
+	margin-top: 5px;
+}

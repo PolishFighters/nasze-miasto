@@ -1,8 +1,12 @@
-<div class="p-2">
-	<b>Autor:</b> <%= comment.author %>
-	<% if (locals.user?.admin == true) { %>
-		<a href="/api/delete_comment?comment=<%- comment.id %>&post=<%- post.id %>" class="float-end btn btn-danger">Usuń komentarz</a>
-	<% } %>
-	<br/>
-	<%- comment.content %>
+<div class="mb-2 p-2 card">
+	<div class="card-body">
+		<b><i class="fa-solid fa-user"></i> <%= comment.author %></b>
+		<% if (locals.user?.admin == true) { %>
+			<a href="/api/delete_comment?comment=<%- comment.id %>&post=<%- post.id %>" class="float-end btn btn-danger">Usuń komentarz</a>
+		<% } %>
+		<br/>
+		<div class="comment-content">
+			<%- comment.content %>
+		</div>
+	</div>
 </div>
