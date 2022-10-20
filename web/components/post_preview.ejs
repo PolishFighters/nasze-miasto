@@ -1,5 +1,5 @@
-<div class="container mb-3">
-	<div class="row">
+<div class="container mb-3 card">
+	<div class="row card-body">
 		<div class="col-1">
 			<% if(locals.logged_in) { %>
 				<% if(locals.user.liked.find(v => v == post.id) == undefined ) { %>
@@ -19,4 +19,4 @@
 			<i class="fa-solid fa-city"></i> <%= post.city %>
 		</div>
 	</div>
-</div>
+</div>	
