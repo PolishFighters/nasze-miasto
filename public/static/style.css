@@ -23,3 +23,8 @@ nav a {
 main {
 	padding: 10px;
 }
+
+.logo-center {
+	width: 12rem;
+	transform: translateY(-0.3rem);
+}
