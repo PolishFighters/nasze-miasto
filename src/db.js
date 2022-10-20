@@ -50,13 +50,13 @@ module.exports = {
 		posts: [
 			{
 				id: 0,
-				content: "",
-				likes: 3243, //cache
+				content: "Proszę odświeżyć stronę",
+				likes: 2022, //cache
 				deleted: false,
 				author: 0,
-				title: "",
+				title: "Proszę odświeżyć stronę",
 				created_at: new Date(),
-				city: ""
+				city: "Kraina Administracji"
 			}
 		],
 		cities: [
