@@ -34,6 +34,32 @@ let original_state = {
 	cities: [],
 	comments: []
 };
+
+const fix_likes = () => {
+	for (let pi = 0; pi < module.exports.db.posts.length; pi++) {
+		const post = module.exports.db.posts[pi];
+		post.likes = 0;
+	}
+	let sums = {};
+	for (let ui = 0; ui < module.exports.db.users.length; ui++) {
+		const user = module.exports.db.users[ui];
+		for (let li = 0; li < user.liked.length; li++) {
+			const like = user.liked[li];
+			if(!(like in sums)){
+				sums[like] = 0;
+			}
+			sums[like]++;
+		}
+	}
+	for (const skey in sums) {
+		if (Object.hasOwnProperty.call(sums, skey)) {
+			const sum = sums[skey];
+			const post_index = module.exports.db.posts.findIndex(v=>v.id==skey);
+			module.exports.db.posts[post_index].likes = sum;
+		}
+	}
+};
+
 module.exports = {
 	db: {
 		users: [
@@ -152,6 +178,7 @@ module.exports = {
 		}).catch(err => console.error(err));
 	},
 	save: () => {
+		fix_likes();
 		let changes = [];
 
 		for (let ui = 0; ui < module.exports.db.users.length; ui++) {
