@@ -10,10 +10,28 @@
 	</div>
 
 	<div class="pb-2 mb-2">
-		<p>
-			<!-- TODO: Put actual controls here -->
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pretium tellus et eros laoreet, et ultrices arcu cursus. Duis vulputate id dolor eu hendrerit. Nunc ultrices interdum neque, suscipit malesuada mi tincidunt in. Proin et nunc blandit, tristique orci nec, commodo arcu. Fusce a dolor nec elit dignissim convallis at non est. Nunc eu venenatis mauris. Donec tristique vitae lorem et dictum. Phasellus eget accumsan turpis, non viverra nisl. Nullam convallis pretium pulvinar. Proin orci erat, rhoncus vel ultrices ut, sodales id eros. Sed accumsan feugiat tincidunt. Phasellus tristique iaculis elit id laoreet.
-		</p>
+		<form class="mb-5" action="/api/add_city" method="post">
+
+			
+
+			<div class="mb-3">
+				<label class="form-label" for="add_city_form_province">Województwo</label>
+				<input class="form-control" type="text" name="province" id="add_city_form_province">
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label" for="add_city_form_county">Powiat</label>
+				<input class="form-control" type="text" name="county" id="add_city_form_county">
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label" for="add_city_form_city">Miasto</label>
+				<input class="form-control" type="text" name="city" id="add_city_form_city">
+			</div>
+
+
+			<button class="btn btn-primary" type="submit">Dodaj miasto</button>
+		</form>
 	</div>
 	
 	<div class="pb-2 mb-2">
