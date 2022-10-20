@@ -10,7 +10,7 @@
     "lintNFix": "eslint --fix src"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.1",
     "bootstrap": "^5.2.2",
