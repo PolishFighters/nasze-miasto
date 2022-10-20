@@ -7,6 +7,8 @@
 				<% } else { %>
 					<a href="/api/unlike_post?post=<%- post.id %>" class="btn btn-danger"><i class="fa-solid fa-heart like-heart-icon"></i><%- post.likes %></a>
 				<% } %>
+			<% } else { %>
+				<span class="btn btn-danger" style="pointer-events: none;"><i class="fa-solid fa-heart like-heart-icon"></i><%- post.likes %></span>
 			<% } %>
 		</div>
 		<div class="col">
