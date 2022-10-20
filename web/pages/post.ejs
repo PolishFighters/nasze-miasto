@@ -36,7 +36,7 @@
         <%- locals.xss %>
     </div>
     <div class="pb-2 mb-2">
-		<h4 class="border-bottom">Komentarze</h4>
+		<h4 class="border-bottom"><i class="fa-solid fa-comment"></i> Komentarze</h4>
         <% comments.forEach( comment => { %>
 			<%- include("../components/comment", {comment: comment}) %>
         <% }); %>
