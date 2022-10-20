@@ -35,6 +35,12 @@ app.use((req, res, next) => {
 	res.locals.user = sessions.user_from_session(req.cookies.session);
 	res.locals.logged_in = res.locals.user != undefined;
 	res.locals.db = db.db;
+	res.locals.trunc = function truncate(input, len) {
+		if (input.length > len) {
+			return input.substring(0, len) + "...";
+		}
+		return input;
+	};
 	next();
 });
 
@@ -51,6 +57,7 @@ app.get("/signup", require("./pages/signup"));
 app.get("/post/:id", require("./pages/post"));
 app.get("/admin", require("./pages/admin"));
 app.get("/me", require("./pages/me"));
+app.get("/contact", require("./pages/contact"));
 
 app.use("/api/", require("./api/"));
 

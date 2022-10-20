@@ -1,12 +1,11 @@
-<div class="container mb-3">
-	<div class="row">
+<div class="container mb-3 card">
+	<div class="row card-body">
 		<div class="col-1">
-			<h1><%- post.likes %></h1>
 			<% if(locals.logged_in) { %>
 				<% if(locals.user.liked.find(v => v == post.id) == undefined ) { %>
-					<a href="/api/like_post?post=<%- post.id %>" class="btn btn-primary">+1</a>
+					<a href="/api/like_post?post=<%- post.id %>" class="btn btn-danger"><i class="fa-regular fa-heart like-heart-icon"></i><%- post.likes %></a>
 				<% } else { %>
-					<a href="/api/unlike_post?post=<%- post.id %>" class="btn btn-primary">-1</a>
+					<a href="/api/unlike_post?post=<%- post.id %>" class="btn btn-danger"><i class="fa-solid fa-heart like-heart-icon"></i><%- post.likes %></a>
 				<% } %>
 			<% } %>
 		</div>
@@ -15,9 +14,9 @@
 				<h2><%- post.title %></h2>
 			</a>
 			<% const author_user = locals.db.users.find(v=>v.id==post.author) %>
-			Autor: <%- author_user?.firstname %> <%- author_user?.lastname %>
+			<i class="fa-solid fa-user"></i> <%- author_user?.firstname %> <%- author_user?.lastname %>
 			<br/>
-			Miasto: <%= post.city %>
+			<i class="fa-solid fa-city"></i> <%= post.city %>
 		</div>
 	</div>
-</div>
+</div>	

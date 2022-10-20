@@ -13,6 +13,7 @@
 		<p>
 			<% for (let pi = 0; pi < locals.posts.length; pi++) { %>
 				<% const post = locals.posts[pi] %>
+				<% if(post.deleted) continue; %>
 				<%- include("../components/post_preview", {post: post}) %>
 			<% } %>	
 		</p>

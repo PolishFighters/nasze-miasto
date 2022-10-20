@@ -21,8 +21,10 @@ module.exports = (req, res) => {
 
 	for (let ci = 0; ci < comments.length; ci++) {
 		const comment = comments[ci];
+		if(comment.deleted) continue;
 		const user = db.db.users.find(v=>v.id==comment.author);
 		processed_comments.push({
+			id: comment.id,
 			author: `${user.firstname} ${user.lastname}`,
 			content: xss(comment.content)
 		});

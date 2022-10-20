@@ -1,5 +1,8 @@
 <div class="p-2">
 	<b>Autor:</b> <%= comment.author %>
+	<% if (locals.user?.admin == true) { %>
+		<a href="/api/delete_comment?comment=<%- comment.id %>&post=<%- post.id %>" class="float-end btn btn-danger">Usuń komentarz</a>
+	<% } %>
 	<br/>
 	<%- comment.content %>
 </div>

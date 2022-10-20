@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="/">
-			<img src="/static/logo.png" width="200" class="d-inline-block align-top" alt="">
+			<img src="/static/logo.png" class="d-inline-block align-top logo-center" alt="Logo: Nasze Miasto">
 		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
 		<span class="navbar-toggler-icon"></span>
@@ -10,19 +10,28 @@
 		<% if (locals.logged_in) { %>
 		<ul class="navbar-nav me-auto">	  
 			<li class="nav-item">
-				<a class="nav-link" href="/create_post">Zgłoś pomysł</a>
+				<a class="nav-link" href="/create_post"><i class="fa-solid fa-lightbulb"></i>Zgłoś pomysł</a>
 			</li>
-			<a class="nav-link" href="/me">Moje Konto</a>
+			<li>
+				<a class="nav-link" href="/me"><i class="fa-solid fa-house-user"></i>Moje Konto</a>
+			</li>
 			<% if(locals.user.admin) { %>
 				<li class="nav-item">
-					<a class="nav-link" href="/admin">Panel Adminsitratora</a>
+					<a class="nav-link" href="/admin"><i class=" fa-solid fa-wrench"></i>Panel Adminsitratora</a>
 				</li>
 			<% } %>
+			<li class="nav-item">
+				<a class="nav-link" href="/contact"><i class="fa-solid fa-address-book"></i>Kontakt</a>
+			</li>
 		</ul>
-		<a class="nav-link" href="/api/logout">Wyloguj się</a>
+		<a class="navbar-nav nav-link" href="/api/logout"><i class="fa-solid fa-right-from-bracket"></i>Wyloguj się</a>
 		<% } else { %>
-			<ul class="navbar-nav me-auto"></ul>
-			<a class="nav-link" href="/login">Zaloguj się</a>
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/contact"><i class="fa-solid fa-address-book"></i>Kontakt</a>
+				</li>
+			</ul>
+			<a class="navbar-nav nav-link" href="/login"><i class="fa-solid fa-right-to-bracket"></i>Zaloguj się</a>
 		<% } %>
 		</div>
 	</div>
