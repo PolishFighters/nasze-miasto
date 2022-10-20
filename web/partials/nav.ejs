@@ -12,17 +12,26 @@
 			<li class="nav-item">
 				<a class="nav-link" href="/create_post">Zgłoś pomysł</a>
 			</li>
-			<a class="nav-link" href="/me">Moje Konto</a>
+			<li>
+				<a class="nav-link" href="/me">Moje Konto</a>
+			</li>
 			<% if(locals.user.admin) { %>
 				<li class="nav-item">
 					<a class="nav-link" href="/admin">Panel Adminsitratora</a>
 				</li>
 			<% } %>
+			<li class="nav-item">
+				<a class="nav-link" href="/contact">Kontakt</a>
+			</li>
 		</ul>
-		<a class="nav-link" href="/api/logout">Wyloguj się</a>
+		<a class="navbar-nav nav-link" href="/api/logout">Wyloguj się</a>
 		<% } else { %>
-			<ul class="navbar-nav me-auto"></ul>
-			<a class="nav-link" href="/login">Zaloguj się</a>
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/contact">Kontakt</a>
+				</li>
+			</ul>
+			<a class="navbar-nav nav-link" href="/login">Zaloguj się</a>
 		<% } %>
 		</div>
 	</div>
