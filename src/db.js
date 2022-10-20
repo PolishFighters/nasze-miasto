@@ -55,6 +55,10 @@ const fix_likes = () => {
 		if (Object.hasOwnProperty.call(sums, skey)) {
 			const sum = sums[skey];
 			const post_index = module.exports.db.posts.findIndex(v=>v.id==skey);
+			if(post_index<0){
+				// NOTE: This means that the post which was liked by the user was deleted
+				continue;
+			}
 			module.exports.db.posts[post_index].likes = sum;
 		}
 	}

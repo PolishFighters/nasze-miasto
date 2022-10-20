@@ -12,7 +12,7 @@ module.exports = (req, res) => {
 	const post_index = db.db.posts.findIndex(v => v.id == post_id);
 	const user_index = db.db.users.findIndex(v => v.id == user_id);
 
-	if (user_index == undefined || post_index == undefined) {
+	if (user_index < 0 || post_index < 0) {
 		res.redirect("/");
 		return;
 	}
