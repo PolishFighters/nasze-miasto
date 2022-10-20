@@ -10,28 +10,28 @@
 		<% if (locals.logged_in) { %>
 		<ul class="navbar-nav me-auto">	  
 			<li class="nav-item">
-				<a class="nav-link" href="/create_post">Zgłoś pomysł</a>
+				<a class="nav-link" href="/create_post"><i class="fa-solid fa-lightbulb"></i>Zgłoś pomysł</a>
 			</li>
 			<li>
-				<a class="nav-link" href="/me">Moje Konto</a>
+				<a class="nav-link" href="/me"><i class="fa-solid fa-house-user"></i>Moje Konto</a>
 			</li>
 			<% if(locals.user.admin) { %>
 				<li class="nav-item">
-					<a class="nav-link" href="/admin">Panel Adminsitratora</a>
+					<a class="nav-link" href="/admin"><i class=" fa-solid fa-wrench"></i>Panel Adminsitratora</a>
 				</li>
 			<% } %>
 			<li class="nav-item">
-				<a class="nav-link" href="/contact">Kontakt</a>
+				<a class="nav-link" href="/contact"><i class="fa-solid fa-address-book"></i>Kontakt</a>
 			</li>
 		</ul>
-		<a class="navbar-nav nav-link" href="/api/logout">Wyloguj się</a>
+		<a class="navbar-nav nav-link" href="/api/logout"><i class="fa-solid fa-right-from-bracket"></i>Wyloguj się</a>
 		<% } else { %>
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item">
-					<a class="nav-link" href="/contact">Kontakt</a>
+					<a class="nav-link" href="/contact"><i class="fa-solid fa-address-book"></i>Kontakt</a>
 				</li>
 			</ul>
-			<a class="navbar-nav nav-link" href="/login">Zaloguj się</a>
+			<a class="navbar-nav nav-link" href="/login"><i class="fa-solid fa-right-to-bracket"></i>Zaloguj się</a>
 		<% } %>
 		</div>
 	</div>

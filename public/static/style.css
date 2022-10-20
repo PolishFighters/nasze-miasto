@@ -28,3 +28,11 @@ main {
 	width: 12rem;
 	transform: translateY(-0.3rem);
 }
+
+.fa-right-to-bracket, .fa-right-from-bracket{
+	transform: translate(-25%, 18.5%);
+}
+
+.fa-wrench, .fa-house-user, .fa-address-book, .fa-lightbulb {
+	transform: translate(-25%, 0%);
+}
