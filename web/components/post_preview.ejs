@@ -1,6 +1,6 @@
 <div class="container mb-3 card">
 	<div class="row card-body">
-		<div class="col-1">
+		<div class="col-md-1">
 			<% if(locals.logged_in) { %>
 				<% if(locals.user.liked.find(v => v == post.id) == undefined ) { %>
 					<a href="/api/like_post?post=<%- post.id %>" class="btn btn-danger"><i class="fa-regular fa-heart like-heart-icon"></i><%- post.likes %></a>
